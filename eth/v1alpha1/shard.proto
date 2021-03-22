@@ -21,21 +21,34 @@ option csharp_namespace = "Ethereum.Eth.v1alpha1";
 option go_package = "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1;eth";
 
 message ShardState {
+  // This slot contains the pandora sharding state
   uint64 slot = 1;
+  // Shard chain specific gas price
   uint64 gas_price = 2;
+  // Current hash of the pandora sharding block
   bytes latest_block_root = 3 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Parent hash of the pandora sharding block
   bytes parent_block_root = 4 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Transaction hash of the pandora sharding block
   bytes tx_hash = 5 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Receipt hash of the pandora sharding block
   bytes receipt_hash = 6 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Current block number of the sharding chain
   uint64 block_number = 7;
+  // Gas limit of the pandora sharding chain
   uint64 gas_limit = 8;
+  // Gas used of the pandora sharding chain
   uint64 gas_used = 9;
 }
 
 message ShardTransition {
   uint64 start_slot = 1;
+  // Total sharding blocks of pandora chain. Generally it should 1 for pandora chain
   repeated uint64 shard_block_lengths = 2  [(gogoproto.moretags) = "ssz-max:\"12\""];
+  // State root of the sharding chain. It should be 1 for pandora chain
   repeated bytes shard_data_roots = 3 [(gogoproto.moretags) = "ssz-size:\"?,32\" ssz-max:\"12\""];
+  // ShardState is embedded into ShardTransition. It should be 1 for pandora chain
   repeated ShardState shard_states = 4 [(gogoproto.moretags) = "ssz-max:\"12\""];
+  // Proposer signature on sharding block. For pandora chain it will be 32 bytes.
   bytes proposer_signature_aggregate = 5 [(gogoproto.moretags) = "ssz-size:\"96\""];
 }
