@@ -16,6 +16,7 @@ syntax = "proto3";
 package ethereum.eth.v1alpha1;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "eth/v1alpha1/shard.proto";
 
 option csharp_namespace = "Ethereum.Eth.v1alpha1";
 option go_package = "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1;eth";
@@ -72,6 +73,15 @@ message AttestationData {
 
     // The checkpoint attempting to be justified for the current epoch and its epoch boundary block
     Checkpoint target = 5;
+
+    // The shard which this attestation belongs to
+    uint64 shard = 6;
+
+    // head root of the shard being voted on.
+    bytes shard_head_root = 7 [(gogoproto.moretags) = "ssz-size:\"32\""];
+
+    // transition root of the shard being voted on.
+    bytes shard_transition_root = 8 [(gogoproto.moretags) = "ssz-size:\"32\""];
 }
 
 message Checkpoint {
