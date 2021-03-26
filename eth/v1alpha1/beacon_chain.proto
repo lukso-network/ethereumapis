@@ -269,17 +269,6 @@ service BeaconChain {
             get: "/eth/v1alpha1/beacon/individual_votes"
         };
     }
-
-    // Retrieve the proposer list for a given epoch.
-    //
-    // This request may specify optional validator indices or public keys to
-    // filter validator assignments. This endpoint allows for retrieval of genesis
-    // information via a boolean query filter.
-    rpc GetProposerList(ListValidatorAssignmentsRequest) returns (ValidatorAssignments) {
-        option (google.api.http) = {
-            get: "/eth/v1alpha1/validators/assignments"
-        };
-    }
 }
 
 // SetAction defines the type of action that should be applied to the keys in a validator change set.

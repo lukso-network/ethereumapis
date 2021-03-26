@@ -3825,7 +3825,7 @@ var file_eth_v1alpha1_beacon_chain_proto_rawDesc = []byte{
 	0x52, 0x5f, 0x4b, 0x45, 0x59, 0x53, 0x10, 0x00, 0x12, 0x19, 0x0a, 0x15, 0x52, 0x45, 0x4d, 0x4f,
 	0x56, 0x45, 0x5f, 0x56, 0x41, 0x4c, 0x49, 0x44, 0x41, 0x54, 0x4f, 0x52, 0x5f, 0x4b, 0x45, 0x59,
 	0x53, 0x10, 0x01, 0x12, 0x16, 0x0a, 0x12, 0x53, 0x45, 0x54, 0x5f, 0x56, 0x41, 0x4c, 0x49, 0x44,
-	0x41, 0x54, 0x4f, 0x52, 0x5f, 0x4b, 0x45, 0x59, 0x53, 0x10, 0x02, 0x32, 0xba, 0x1e, 0x0a, 0x0b,
+	0x41, 0x54, 0x4f, 0x52, 0x5f, 0x4b, 0x45, 0x59, 0x53, 0x10, 0x02, 0x32, 0x93, 0x1d, 0x0a, 0x0b,
 	0x42, 0x65, 0x61, 0x63, 0x6f, 0x6e, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x12, 0x9e, 0x01, 0x0a, 0x10,
 	0x4c, 0x69, 0x73, 0x74, 0x41, 0x74, 0x74, 0x65, 0x73, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
 	0x12, 0x2e, 0x2e, 0x65, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x2e, 0x65, 0x74, 0x68, 0x2e,
@@ -4059,27 +4059,17 @@ var file_eth_v1alpha1_beacon_chain_proto_rawDesc = []byte{
 	0x6e, 0x64, 0x22, 0x2d, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x27, 0x12, 0x25, 0x2f, 0x65, 0x74, 0x68,
 	0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2f, 0x62, 0x65, 0x61, 0x63, 0x6f, 0x6e,
 	0x2f, 0x69, 0x6e, 0x64, 0x69, 0x76, 0x69, 0x64, 0x75, 0x61, 0x6c, 0x5f, 0x76, 0x6f, 0x74, 0x65,
-	0x73, 0x12, 0xa4, 0x01, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x65,
-	0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x36, 0x2e, 0x65, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d,
-	0x2e, 0x65, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x4c, 0x69,
-	0x73, 0x74, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x41, 0x73, 0x73, 0x69, 0x67,
-	0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e,
-	0x65, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x2e, 0x65, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x61,
-	0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x41,
-	0x73, 0x73, 0x69, 0x67, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x22, 0x2c, 0x82, 0xd3, 0xe4, 0x93,
-	0x02, 0x26, 0x12, 0x24, 0x2f, 0x65, 0x74, 0x68, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x31, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x2f, 0x61, 0x73, 0x73,
-	0x69, 0x67, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x42, 0x97, 0x01, 0x0a, 0x19, 0x6f, 0x72, 0x67,
-	0x2e, 0x65, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x2e, 0x65, 0x74, 0x68, 0x2e, 0x76, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x42, 0x10, 0x42, 0x65, 0x61, 0x63, 0x6f, 0x6e, 0x43, 0x68,
-	0x61, 0x69, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68,
-	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x72, 0x79, 0x73, 0x6d, 0x61, 0x74, 0x69, 0x63,
-	0x6c, 0x61, 0x62, 0x73, 0x2f, 0x65, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x61, 0x70, 0x69,
-	0x73, 0x2f, 0x65, 0x74, 0x68, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x3b, 0x65,
-	0x74, 0x68, 0xaa, 0x02, 0x15, 0x45, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x2e, 0x45, 0x74,
-	0x68, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0xca, 0x02, 0x15, 0x45, 0x74, 0x68,
-	0x65, 0x72, 0x65, 0x75, 0x6d, 0x5c, 0x45, 0x74, 0x68, 0x5c, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x42, 0x97, 0x01, 0x0a, 0x19, 0x6f, 0x72, 0x67, 0x2e, 0x65, 0x74, 0x68, 0x65, 0x72, 0x65,
+	0x75, 0x6d, 0x2e, 0x65, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x42,
+	0x10, 0x42, 0x65, 0x61, 0x63, 0x6f, 0x6e, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x70, 0x72, 0x79, 0x73, 0x6d, 0x61, 0x74, 0x69, 0x63, 0x6c, 0x61, 0x62, 0x73, 0x2f, 0x65, 0x74,
+	0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x65, 0x74, 0x68, 0x2f, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x3b, 0x65, 0x74, 0x68, 0xaa, 0x02, 0x15, 0x45, 0x74,
+	0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x2e, 0x45, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x31, 0xca, 0x02, 0x15, 0x45, 0x74, 0x68, 0x65, 0x72, 0x65, 0x75, 0x6d, 0x5c, 0x45,
+	0x74, 0x68, 0x5c, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4190,34 +4180,32 @@ var file_eth_v1alpha1_beacon_chain_proto_depIdxs = []int32{
 	48, // 37: ethereum.eth.v1alpha1.BeaconChain.SubmitAttesterSlashing:input_type -> ethereum.eth.v1alpha1.AttesterSlashing
 	49, // 38: ethereum.eth.v1alpha1.BeaconChain.SubmitProposerSlashing:input_type -> ethereum.eth.v1alpha1.ProposerSlashing
 	31, // 39: ethereum.eth.v1alpha1.BeaconChain.GetIndividualVotes:input_type -> ethereum.eth.v1alpha1.IndividualVotesRequest
-	23, // 40: ethereum.eth.v1alpha1.BeaconChain.GetProposerList:input_type -> ethereum.eth.v1alpha1.ListValidatorAssignmentsRequest
-	4,  // 41: ethereum.eth.v1alpha1.BeaconChain.ListAttestations:output_type -> ethereum.eth.v1alpha1.ListAttestationsResponse
-	5,  // 42: ethereum.eth.v1alpha1.BeaconChain.ListIndexedAttestations:output_type -> ethereum.eth.v1alpha1.ListIndexedAttestationsResponse
-	42, // 43: ethereum.eth.v1alpha1.BeaconChain.StreamAttestations:output_type -> ethereum.eth.v1alpha1.Attestation
-	43, // 44: ethereum.eth.v1alpha1.BeaconChain.StreamIndexedAttestations:output_type -> ethereum.eth.v1alpha1.IndexedAttestation
-	28, // 45: ethereum.eth.v1alpha1.BeaconChain.AttestationPool:output_type -> ethereum.eth.v1alpha1.AttestationPoolResponse
-	7,  // 46: ethereum.eth.v1alpha1.BeaconChain.ListBlocks:output_type -> ethereum.eth.v1alpha1.ListBlocksResponse
-	44, // 47: ethereum.eth.v1alpha1.BeaconChain.StreamBlocks:output_type -> ethereum.eth.v1alpha1.SignedBeaconBlock
-	10, // 48: ethereum.eth.v1alpha1.BeaconChain.StreamChainHead:output_type -> ethereum.eth.v1alpha1.ChainHead
-	10, // 49: ethereum.eth.v1alpha1.BeaconChain.GetChainHead:output_type -> ethereum.eth.v1alpha1.ChainHead
-	33, // 50: ethereum.eth.v1alpha1.BeaconChain.GetWeakSubjectivityCheckpoint:output_type -> ethereum.eth.v1alpha1.WeakSubjectivityCheckpoint
-	12, // 51: ethereum.eth.v1alpha1.BeaconChain.ListBeaconCommittees:output_type -> ethereum.eth.v1alpha1.BeaconCommittees
-	14, // 52: ethereum.eth.v1alpha1.BeaconChain.ListValidatorBalances:output_type -> ethereum.eth.v1alpha1.ValidatorBalances
-	17, // 53: ethereum.eth.v1alpha1.BeaconChain.ListValidators:output_type -> ethereum.eth.v1alpha1.Validators
-	46, // 54: ethereum.eth.v1alpha1.BeaconChain.GetValidator:output_type -> ethereum.eth.v1alpha1.Validator
-	19, // 55: ethereum.eth.v1alpha1.BeaconChain.GetValidatorActiveSetChanges:output_type -> ethereum.eth.v1alpha1.ActiveSetChanges
-	22, // 56: ethereum.eth.v1alpha1.BeaconChain.GetValidatorQueue:output_type -> ethereum.eth.v1alpha1.ValidatorQueue
-	21, // 57: ethereum.eth.v1alpha1.BeaconChain.GetValidatorPerformance:output_type -> ethereum.eth.v1alpha1.ValidatorPerformanceResponse
-	24, // 58: ethereum.eth.v1alpha1.BeaconChain.ListValidatorAssignments:output_type -> ethereum.eth.v1alpha1.ValidatorAssignments
-	26, // 59: ethereum.eth.v1alpha1.BeaconChain.GetValidatorParticipation:output_type -> ethereum.eth.v1alpha1.ValidatorParticipationResponse
-	29, // 60: ethereum.eth.v1alpha1.BeaconChain.GetBeaconConfig:output_type -> ethereum.eth.v1alpha1.BeaconConfig
-	50, // 61: ethereum.eth.v1alpha1.BeaconChain.StreamValidatorsInfo:output_type -> ethereum.eth.v1alpha1.ValidatorInfo
-	30, // 62: ethereum.eth.v1alpha1.BeaconChain.SubmitAttesterSlashing:output_type -> ethereum.eth.v1alpha1.SubmitSlashingResponse
-	30, // 63: ethereum.eth.v1alpha1.BeaconChain.SubmitProposerSlashing:output_type -> ethereum.eth.v1alpha1.SubmitSlashingResponse
-	32, // 64: ethereum.eth.v1alpha1.BeaconChain.GetIndividualVotes:output_type -> ethereum.eth.v1alpha1.IndividualVotesRespond
-	24, // 65: ethereum.eth.v1alpha1.BeaconChain.GetProposerList:output_type -> ethereum.eth.v1alpha1.ValidatorAssignments
-	41, // [41:66] is the sub-list for method output_type
-	16, // [16:41] is the sub-list for method input_type
+	4,  // 40: ethereum.eth.v1alpha1.BeaconChain.ListAttestations:output_type -> ethereum.eth.v1alpha1.ListAttestationsResponse
+	5,  // 41: ethereum.eth.v1alpha1.BeaconChain.ListIndexedAttestations:output_type -> ethereum.eth.v1alpha1.ListIndexedAttestationsResponse
+	42, // 42: ethereum.eth.v1alpha1.BeaconChain.StreamAttestations:output_type -> ethereum.eth.v1alpha1.Attestation
+	43, // 43: ethereum.eth.v1alpha1.BeaconChain.StreamIndexedAttestations:output_type -> ethereum.eth.v1alpha1.IndexedAttestation
+	28, // 44: ethereum.eth.v1alpha1.BeaconChain.AttestationPool:output_type -> ethereum.eth.v1alpha1.AttestationPoolResponse
+	7,  // 45: ethereum.eth.v1alpha1.BeaconChain.ListBlocks:output_type -> ethereum.eth.v1alpha1.ListBlocksResponse
+	44, // 46: ethereum.eth.v1alpha1.BeaconChain.StreamBlocks:output_type -> ethereum.eth.v1alpha1.SignedBeaconBlock
+	10, // 47: ethereum.eth.v1alpha1.BeaconChain.StreamChainHead:output_type -> ethereum.eth.v1alpha1.ChainHead
+	10, // 48: ethereum.eth.v1alpha1.BeaconChain.GetChainHead:output_type -> ethereum.eth.v1alpha1.ChainHead
+	33, // 49: ethereum.eth.v1alpha1.BeaconChain.GetWeakSubjectivityCheckpoint:output_type -> ethereum.eth.v1alpha1.WeakSubjectivityCheckpoint
+	12, // 50: ethereum.eth.v1alpha1.BeaconChain.ListBeaconCommittees:output_type -> ethereum.eth.v1alpha1.BeaconCommittees
+	14, // 51: ethereum.eth.v1alpha1.BeaconChain.ListValidatorBalances:output_type -> ethereum.eth.v1alpha1.ValidatorBalances
+	17, // 52: ethereum.eth.v1alpha1.BeaconChain.ListValidators:output_type -> ethereum.eth.v1alpha1.Validators
+	46, // 53: ethereum.eth.v1alpha1.BeaconChain.GetValidator:output_type -> ethereum.eth.v1alpha1.Validator
+	19, // 54: ethereum.eth.v1alpha1.BeaconChain.GetValidatorActiveSetChanges:output_type -> ethereum.eth.v1alpha1.ActiveSetChanges
+	22, // 55: ethereum.eth.v1alpha1.BeaconChain.GetValidatorQueue:output_type -> ethereum.eth.v1alpha1.ValidatorQueue
+	21, // 56: ethereum.eth.v1alpha1.BeaconChain.GetValidatorPerformance:output_type -> ethereum.eth.v1alpha1.ValidatorPerformanceResponse
+	24, // 57: ethereum.eth.v1alpha1.BeaconChain.ListValidatorAssignments:output_type -> ethereum.eth.v1alpha1.ValidatorAssignments
+	26, // 58: ethereum.eth.v1alpha1.BeaconChain.GetValidatorParticipation:output_type -> ethereum.eth.v1alpha1.ValidatorParticipationResponse
+	29, // 59: ethereum.eth.v1alpha1.BeaconChain.GetBeaconConfig:output_type -> ethereum.eth.v1alpha1.BeaconConfig
+	50, // 60: ethereum.eth.v1alpha1.BeaconChain.StreamValidatorsInfo:output_type -> ethereum.eth.v1alpha1.ValidatorInfo
+	30, // 61: ethereum.eth.v1alpha1.BeaconChain.SubmitAttesterSlashing:output_type -> ethereum.eth.v1alpha1.SubmitSlashingResponse
+	30, // 62: ethereum.eth.v1alpha1.BeaconChain.SubmitProposerSlashing:output_type -> ethereum.eth.v1alpha1.SubmitSlashingResponse
+	32, // 63: ethereum.eth.v1alpha1.BeaconChain.GetIndividualVotes:output_type -> ethereum.eth.v1alpha1.IndividualVotesRespond
+	40, // [40:64] is the sub-list for method output_type
+	16, // [16:40] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
 	16, // [16:16] is the sub-list for extension extendee
 	0,  // [0:16] is the sub-list for field type_name
@@ -4800,7 +4788,6 @@ type BeaconChainClient interface {
 	SubmitAttesterSlashing(ctx context.Context, in *AttesterSlashing, opts ...grpc.CallOption) (*SubmitSlashingResponse, error)
 	SubmitProposerSlashing(ctx context.Context, in *ProposerSlashing, opts ...grpc.CallOption) (*SubmitSlashingResponse, error)
 	GetIndividualVotes(ctx context.Context, in *IndividualVotesRequest, opts ...grpc.CallOption) (*IndividualVotesRespond, error)
-	GetProposerList(ctx context.Context, in *ListValidatorAssignmentsRequest, opts ...grpc.CallOption) (*ValidatorAssignments, error)
 }
 
 type beaconChainClient struct {
@@ -5141,15 +5128,6 @@ func (c *beaconChainClient) GetIndividualVotes(ctx context.Context, in *Individu
 	return out, nil
 }
 
-func (c *beaconChainClient) GetProposerList(ctx context.Context, in *ListValidatorAssignmentsRequest, opts ...grpc.CallOption) (*ValidatorAssignments, error) {
-	out := new(ValidatorAssignments)
-	err := c.cc.Invoke(ctx, "/ethereum.eth.v1alpha1.BeaconChain/GetProposerList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // BeaconChainServer is the server API for BeaconChain service.
 type BeaconChainServer interface {
 	ListAttestations(context.Context, *ListAttestationsRequest) (*ListAttestationsResponse, error)
@@ -5176,7 +5154,6 @@ type BeaconChainServer interface {
 	SubmitAttesterSlashing(context.Context, *AttesterSlashing) (*SubmitSlashingResponse, error)
 	SubmitProposerSlashing(context.Context, *ProposerSlashing) (*SubmitSlashingResponse, error)
 	GetIndividualVotes(context.Context, *IndividualVotesRequest) (*IndividualVotesRespond, error)
-	GetProposerList(context.Context, *ListValidatorAssignmentsRequest) (*ValidatorAssignments, error)
 }
 
 // UnimplementedBeaconChainServer can be embedded to have forward compatible implementations.
@@ -5254,9 +5231,6 @@ func (*UnimplementedBeaconChainServer) SubmitProposerSlashing(context.Context, *
 }
 func (*UnimplementedBeaconChainServer) GetIndividualVotes(context.Context, *IndividualVotesRequest) (*IndividualVotesRespond, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIndividualVotes not implemented")
-}
-func (*UnimplementedBeaconChainServer) GetProposerList(context.Context, *ListValidatorAssignmentsRequest) (*ValidatorAssignments, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProposerList not implemented")
 }
 
 func RegisterBeaconChainServer(s *grpc.Server, srv BeaconChainServer) {
@@ -5715,24 +5689,6 @@ func _BeaconChain_GetIndividualVotes_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BeaconChain_GetProposerList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListValidatorAssignmentsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BeaconChainServer).GetProposerList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ethereum.eth.v1alpha1.BeaconChain/GetProposerList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BeaconChainServer).GetProposerList(ctx, req.(*ListValidatorAssignmentsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _BeaconChain_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "ethereum.eth.v1alpha1.BeaconChain",
 	HandlerType: (*BeaconChainServer)(nil),
@@ -5812,10 +5768,6 @@ var _BeaconChain_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetIndividualVotes",
 			Handler:    _BeaconChain_GetIndividualVotes_Handler,
-		},
-		{
-			MethodName: "GetProposerList",
-			Handler:    _BeaconChain_GetProposerList_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
