@@ -271,7 +271,7 @@ service BeaconChain {
     }
 
     // Retrieve the proposer list for next epoch (curEpoch + 1).
-    rpc GetNextEpochProposerList(google.protobuf.Empty) returns (ValidatorAssignments) {
+    rpc NextEpochProposerList(google.protobuf.Empty) returns (ValidatorAssignments) {
         option (google.api.http) = {
             get: "/eth/v1alpha1/validators/assignments"
         };
