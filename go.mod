@@ -14,4 +14,4 @@ require (
 	google.golang.org/protobuf v1.24.0
 )
 
-replace github.com/prysmaticlabs/ethereumapis => github.com/lukso-network/vanguard-apis v0.0.0-20210322154748-68f4e3566530
+replace github.com/prysmaticlabs/ethereumapis => github.com/lukso-network/vanguard-apis v0.0.0-20210411213712-e2895c3bbc06
