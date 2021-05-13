@@ -270,10 +270,10 @@ service BeaconChain {
         };
     }
 
-    // Retrieve the proposer list for next epoch (curEpoch + 1).
-    rpc NextEpochProposerList(google.protobuf.Empty) returns (ValidatorAssignments) {
+    // Server-side stream of minimal consensus info.
+    rpc StreamMinimalConsensusInfo(google.protobuf.Empty) returns (stream MinimalConsensusInfo) {
         option (google.api.http) = {
-            get: "/eth/v1alpha1/validators/assignments"
+            get: "/eth/v1alpha1/beacon/minimalconsensusinfo/stream"
         };
     }
 }
@@ -436,7 +436,7 @@ message ChainHead {
     uint64 finalized_slot = 4 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Slot"];
 
     // Epoch of the finalized block.
-    uint64 finalized_epoch = 5 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
+    uint64 finalized_epoch = 5[(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
 
     // Most recent 32 byte finalized block root.
     bytes finalized_block_root = 6 [(gogoproto.moretags) = "ssz-size:\"32\""];
@@ -884,4 +884,15 @@ message WeakSubjectivityCheckpoint {
     bytes state_root = 2;
     // The epoch of weak subjectivity checkpoint.
     uint64 epoch = 3 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
+}
+
+message MinimalConsensusInfo {
+    // The epoch of the minimal consensus request.
+    uint64 epoch = 1 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
+    // A map (list) of validators.
+    repeated string value = 2;
+    // The epoch of the minimal consensus request.
+    uint64 epoch_time_start = 3;
+    // The slot time duration of the requested epoch.
+    uint64 slot_time_duration = 4;
 }
