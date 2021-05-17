@@ -18,6 +18,7 @@ package ethereum.eth.v1alpha1;
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/duration.proto";
 
 import "eth/v1alpha1/attestation.proto";
 import "eth/v1alpha1/beacon_block.proto";
@@ -752,6 +753,9 @@ message ValidatorAssignments {
         // Beacon chain slots in which the validator must perform its assigned
         // duty as a proposer.
         repeated uint64 proposer_slots = 4 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Slot"];
+        message ValidatorList {
+            repeated string Validator = 1;
+        }
 
         // 48 byte BLS public key.
         bytes public_key = 5 [(gogoproto.moretags) = "ssz-size:\"48\"", deprecated = true];
@@ -890,9 +894,11 @@ message MinimalConsensusInfo {
     // The epoch of the minimal consensus request.
     uint64 epoch = 1 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
     // A map (list) of validators.
-    repeated string value = 2;
+    message ValidatorList {
+        repeated string Validator = 1;
+    }
     // The epoch of the minimal consensus request.
     uint64 epoch_time_start = 3;
     // The slot time duration of the requested epoch.
-    uint64 slot_time_duration = 4;
+    google.protobuf.Duration slot_time_duration = 4;
 }
