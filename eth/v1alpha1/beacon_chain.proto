@@ -897,7 +897,7 @@ message WeakSubjectivityCheckpoint {
 
 message MinimalConsensusInfo {
     // The epoch of the minimal consensus request.
-    uint64 epoch = 1 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
+    uint64 epoch = 1 [(ethereum.eth.ext.cast_type) = "github.com/prysmaticlabs/eth2-types.Epoch"];
     // A map (list) of validators.
     repeated string validator_list = 2;
     // The epoch of the minimal consensus request.
