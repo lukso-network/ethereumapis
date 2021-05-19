@@ -272,9 +272,9 @@ service BeaconChain {
     }
 
     // Server-side stream of minimal consensus info.
-    rpc StreamMinimalConsensusInfo(google.protobuf.Empty) returns (stream MinimalConsensusInfo) {
+    rpc StreamMinimalConsensusInfo(MinimalConsensusInfoRequest) returns (stream MinimalConsensusInfo) {
         option (google.api.http) = {
-            get: "/eth/v1alpha1/beacon/minimalconsensusinfo/stream"
+            get: "/eth/v1alpha1/beacon/consensus/info/stream"
         };
     }
 
@@ -893,6 +893,11 @@ message WeakSubjectivityCheckpoint {
     bytes state_root = 2;
     // The epoch of weak subjectivity checkpoint.
     uint64 epoch = 3 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
+}
+
+message MinimalConsensusInfoRequest {
+    // The fromEpoch provided in minimal consensus request.
+    uint64 from_epoch = 1 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Epoch"];
 }
 
 message MinimalConsensusInfo {
