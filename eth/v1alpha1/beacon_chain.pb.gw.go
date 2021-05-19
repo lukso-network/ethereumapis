@@ -779,9 +779,20 @@ func local_request_BeaconChain_GetIndividualVotes_0(ctx context.Context, marshal
 
 }
 
+var (
+	filter_BeaconChain_StreamMinimalConsensusInfo_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_BeaconChain_StreamMinimalConsensusInfo_0(ctx context.Context, marshaler runtime.Marshaler, client BeaconChainClient, req *http.Request, pathParams map[string]string) (BeaconChain_StreamMinimalConsensusInfoClient, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq MinimalConsensusInfoRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_BeaconChain_StreamMinimalConsensusInfo_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	stream, err := client.StreamMinimalConsensusInfo(ctx, &protoReq)
 	if err != nil {
@@ -1918,7 +1929,7 @@ var (
 
 	pattern_BeaconChain_GetIndividualVotes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"eth", "v1alpha1", "beacon", "individual_votes"}, ""))
 
-	pattern_BeaconChain_StreamMinimalConsensusInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"eth", "v1alpha1", "beacon", "minimalconsensusinfo", "stream"}, ""))
+	pattern_BeaconChain_StreamMinimalConsensusInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"eth", "v1alpha1", "beacon", "consensus", "info", "stream"}, ""))
 
 	pattern_BeaconChain_StreamNewPendingBlocks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"eth", "v1alpha1", "beacon", "blocks", "stream"}, ""))
 )
