@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package ethereum.eth.v1alpha1;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option csharp_namespace = "Ethereum.Eth.v1alpha1";
+option go_package = "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1;eth";
+
+message PandoraShardState {
+  // This slot contains the pandora sharding state
+  uint64 slot = 1;
+  // Shard chain specific gas price
+  uint64 gas_price = 2;
+  // Current hash of the pandora sharding block
+  bytes latest_block_root = 3 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Parent hash of the pandora sharding block
+  bytes parent_block_root = 4 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Transaction hash of the pandora sharding block
+  bytes tx_hash = 5 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Receipt hash of the pandora sharding block
+  bytes receipt_hash = 6 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Current block number of the sharding chain
+  uint64 block_number = 7;
+  // Gas limit of the pandora sharding chain
+  uint64 gas_limit = 8;
+  // Gas used of the pandora sharding chain
+  uint64 gas_used = 9;
+}
