@@ -2211,6 +2211,550 @@ func (i *IndexedAttestation) HashTreeRootWith(hh *ssz.Hasher) (err error) {
 	return
 }
 
+// MarshalSSZ ssz marshals the PandoraShardState object
+func (p *PandoraShardState) MarshalSSZ() ([]byte, error) {
+	return ssz.MarshalSSZ(p)
+}
+
+// MarshalSSZTo ssz marshals the PandoraShardState object to a target array
+func (p *PandoraShardState) MarshalSSZTo(buf []byte) (dst []byte, err error) {
+	dst = buf
+
+	// Field (0) 'Slot'
+	dst = ssz.MarshalUint64(dst, p.Slot)
+
+	// Field (1) 'GasPrice'
+	dst = ssz.MarshalUint64(dst, p.GasPrice)
+
+	// Field (2) 'LatestBlockRoot'
+	if len(p.LatestBlockRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, p.LatestBlockRoot...)
+
+	// Field (3) 'ParentBlockRoot'
+	if len(p.ParentBlockRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, p.ParentBlockRoot...)
+
+	// Field (4) 'TxHash'
+	if len(p.TxHash) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, p.TxHash...)
+
+	// Field (5) 'ReceiptHash'
+	if len(p.ReceiptHash) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, p.ReceiptHash...)
+
+	// Field (6) 'BlockNumber'
+	dst = ssz.MarshalUint64(dst, p.BlockNumber)
+
+	// Field (7) 'GasLimit'
+	dst = ssz.MarshalUint64(dst, p.GasLimit)
+
+	// Field (8) 'GasUsed'
+	dst = ssz.MarshalUint64(dst, p.GasUsed)
+
+	return
+}
+
+// UnmarshalSSZ ssz unmarshals the PandoraShardState object
+func (p *PandoraShardState) UnmarshalSSZ(buf []byte) error {
+	var err error
+	size := uint64(len(buf))
+	if size != 168 {
+		return ssz.ErrSize
+	}
+
+	// Field (0) 'Slot'
+	p.Slot = ssz.UnmarshallUint64(buf[0:8])
+
+	// Field (1) 'GasPrice'
+	p.GasPrice = ssz.UnmarshallUint64(buf[8:16])
+
+	// Field (2) 'LatestBlockRoot'
+	if cap(p.LatestBlockRoot) == 0 {
+		p.LatestBlockRoot = make([]byte, 0, len(buf[16:48]))
+	}
+	p.LatestBlockRoot = append(p.LatestBlockRoot, buf[16:48]...)
+
+	// Field (3) 'ParentBlockRoot'
+	if cap(p.ParentBlockRoot) == 0 {
+		p.ParentBlockRoot = make([]byte, 0, len(buf[48:80]))
+	}
+	p.ParentBlockRoot = append(p.ParentBlockRoot, buf[48:80]...)
+
+	// Field (4) 'TxHash'
+	if cap(p.TxHash) == 0 {
+		p.TxHash = make([]byte, 0, len(buf[80:112]))
+	}
+	p.TxHash = append(p.TxHash, buf[80:112]...)
+
+	// Field (5) 'ReceiptHash'
+	if cap(p.ReceiptHash) == 0 {
+		p.ReceiptHash = make([]byte, 0, len(buf[112:144]))
+	}
+	p.ReceiptHash = append(p.ReceiptHash, buf[112:144]...)
+
+	// Field (6) 'BlockNumber'
+	p.BlockNumber = ssz.UnmarshallUint64(buf[144:152])
+
+	// Field (7) 'GasLimit'
+	p.GasLimit = ssz.UnmarshallUint64(buf[152:160])
+
+	// Field (8) 'GasUsed'
+	p.GasUsed = ssz.UnmarshallUint64(buf[160:168])
+
+	return err
+}
+
+// SizeSSZ returns the ssz encoded size in bytes for the PandoraShardState object
+func (p *PandoraShardState) SizeSSZ() (size int) {
+	size = 168
+	return
+}
+
+// HashTreeRoot ssz hashes the PandoraShardState object
+func (p *PandoraShardState) HashTreeRoot() ([32]byte, error) {
+	return ssz.HashWithDefaultHasher(p)
+}
+
+// HashTreeRootWith ssz hashes the PandoraShardState object with a hasher
+func (p *PandoraShardState) HashTreeRootWith(hh *ssz.Hasher) (err error) {
+	indx := hh.Index()
+
+	// Field (0) 'Slot'
+	hh.PutUint64(p.Slot)
+
+	// Field (1) 'GasPrice'
+	hh.PutUint64(p.GasPrice)
+
+	// Field (2) 'LatestBlockRoot'
+	if len(p.LatestBlockRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(p.LatestBlockRoot)
+
+	// Field (3) 'ParentBlockRoot'
+	if len(p.ParentBlockRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(p.ParentBlockRoot)
+
+	// Field (4) 'TxHash'
+	if len(p.TxHash) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(p.TxHash)
+
+	// Field (5) 'ReceiptHash'
+	if len(p.ReceiptHash) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(p.ReceiptHash)
+
+	// Field (6) 'BlockNumber'
+	hh.PutUint64(p.BlockNumber)
+
+	// Field (7) 'GasLimit'
+	hh.PutUint64(p.GasLimit)
+
+	// Field (8) 'GasUsed'
+	hh.PutUint64(p.GasUsed)
+
+	hh.Merkleize(indx)
+	return
+}
+
+// MarshalSSZ ssz marshals the ShardState object
+func (s *ShardState) MarshalSSZ() ([]byte, error) {
+	return ssz.MarshalSSZ(s)
+}
+
+// MarshalSSZTo ssz marshals the ShardState object to a target array
+func (s *ShardState) MarshalSSZTo(buf []byte) (dst []byte, err error) {
+	dst = buf
+
+	// Field (0) 'Slot'
+	dst = ssz.MarshalUint64(dst, s.Slot)
+
+	// Field (1) 'GasPrice'
+	dst = ssz.MarshalUint64(dst, s.GasPrice)
+
+	// Field (2) 'LatestBlockRoot'
+	if len(s.LatestBlockRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, s.LatestBlockRoot...)
+
+	return
+}
+
+// UnmarshalSSZ ssz unmarshals the ShardState object
+func (s *ShardState) UnmarshalSSZ(buf []byte) error {
+	var err error
+	size := uint64(len(buf))
+	if size != 48 {
+		return ssz.ErrSize
+	}
+
+	// Field (0) 'Slot'
+	s.Slot = ssz.UnmarshallUint64(buf[0:8])
+
+	// Field (1) 'GasPrice'
+	s.GasPrice = ssz.UnmarshallUint64(buf[8:16])
+
+	// Field (2) 'LatestBlockRoot'
+	if cap(s.LatestBlockRoot) == 0 {
+		s.LatestBlockRoot = make([]byte, 0, len(buf[16:48]))
+	}
+	s.LatestBlockRoot = append(s.LatestBlockRoot, buf[16:48]...)
+
+	return err
+}
+
+// SizeSSZ returns the ssz encoded size in bytes for the ShardState object
+func (s *ShardState) SizeSSZ() (size int) {
+	size = 48
+	return
+}
+
+// HashTreeRoot ssz hashes the ShardState object
+func (s *ShardState) HashTreeRoot() ([32]byte, error) {
+	return ssz.HashWithDefaultHasher(s)
+}
+
+// HashTreeRootWith ssz hashes the ShardState object with a hasher
+func (s *ShardState) HashTreeRootWith(hh *ssz.Hasher) (err error) {
+	indx := hh.Index()
+
+	// Field (0) 'Slot'
+	hh.PutUint64(s.Slot)
+
+	// Field (1) 'GasPrice'
+	hh.PutUint64(s.GasPrice)
+
+	// Field (2) 'LatestBlockRoot'
+	if len(s.LatestBlockRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(s.LatestBlockRoot)
+
+	hh.Merkleize(indx)
+	return
+}
+
+// MarshalSSZ ssz marshals the ShardTransition object
+func (s *ShardTransition) MarshalSSZ() ([]byte, error) {
+	return ssz.MarshalSSZ(s)
+}
+
+// MarshalSSZTo ssz marshals the ShardTransition object to a target array
+func (s *ShardTransition) MarshalSSZTo(buf []byte) (dst []byte, err error) {
+	dst = buf
+	offset := int(120)
+
+	// Field (0) 'StartSlot'
+	dst = ssz.MarshalUint64(dst, s.StartSlot)
+
+	// Offset (1) 'ShardBlockLengths'
+	dst = ssz.WriteOffset(dst, offset)
+	offset += len(s.ShardBlockLengths) * 8
+
+	// Offset (2) 'ShardDataRoots'
+	dst = ssz.WriteOffset(dst, offset)
+	offset += len(s.ShardDataRoots) * 32
+
+	// Offset (3) 'ShardStates'
+	dst = ssz.WriteOffset(dst, offset)
+	offset += len(s.ShardStates) * 48
+
+	// Field (4) 'ProposerSignatureAggregate'
+	if len(s.ProposerSignatureAggregate) != 96 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, s.ProposerSignatureAggregate...)
+
+	// Offset (5) 'PandoraStates'
+	dst = ssz.WriteOffset(dst, offset)
+	offset += len(s.PandoraStates) * 168
+
+	// Field (1) 'ShardBlockLengths'
+	if len(s.ShardBlockLengths) > 12 {
+		err = ssz.ErrListTooBig
+		return
+	}
+	for ii := 0; ii < len(s.ShardBlockLengths); ii++ {
+		dst = ssz.MarshalUint64(dst, s.ShardBlockLengths[ii])
+	}
+
+	// Field (2) 'ShardDataRoots'
+	if len(s.ShardDataRoots) > 12 {
+		err = ssz.ErrListTooBig
+		return
+	}
+	for ii := 0; ii < len(s.ShardDataRoots); ii++ {
+		if len(s.ShardDataRoots[ii]) != 32 {
+			err = ssz.ErrBytesLength
+			return
+		}
+		dst = append(dst, s.ShardDataRoots[ii]...)
+	}
+
+	// Field (3) 'ShardStates'
+	if len(s.ShardStates) > 12 {
+		err = ssz.ErrListTooBig
+		return
+	}
+	for ii := 0; ii < len(s.ShardStates); ii++ {
+		if dst, err = s.ShardStates[ii].MarshalSSZTo(dst); err != nil {
+			return
+		}
+	}
+
+	// Field (5) 'PandoraStates'
+	if len(s.PandoraStates) > 12 {
+		err = ssz.ErrListTooBig
+		return
+	}
+	for ii := 0; ii < len(s.PandoraStates); ii++ {
+		if dst, err = s.PandoraStates[ii].MarshalSSZTo(dst); err != nil {
+			return
+		}
+	}
+
+	return
+}
+
+// UnmarshalSSZ ssz unmarshals the ShardTransition object
+func (s *ShardTransition) UnmarshalSSZ(buf []byte) error {
+	var err error
+	size := uint64(len(buf))
+	if size < 120 {
+		return ssz.ErrSize
+	}
+
+	tail := buf
+	var o1, o2, o3, o5 uint64
+
+	// Field (0) 'StartSlot'
+	s.StartSlot = ssz.UnmarshallUint64(buf[0:8])
+
+	// Offset (1) 'ShardBlockLengths'
+	if o1 = ssz.ReadOffset(buf[8:12]); o1 > size {
+		return ssz.ErrOffset
+	}
+
+	// Offset (2) 'ShardDataRoots'
+	if o2 = ssz.ReadOffset(buf[12:16]); o2 > size || o1 > o2 {
+		return ssz.ErrOffset
+	}
+
+	// Offset (3) 'ShardStates'
+	if o3 = ssz.ReadOffset(buf[16:20]); o3 > size || o2 > o3 {
+		return ssz.ErrOffset
+	}
+
+	// Field (4) 'ProposerSignatureAggregate'
+	if cap(s.ProposerSignatureAggregate) == 0 {
+		s.ProposerSignatureAggregate = make([]byte, 0, len(buf[20:116]))
+	}
+	s.ProposerSignatureAggregate = append(s.ProposerSignatureAggregate, buf[20:116]...)
+
+	// Offset (5) 'PandoraStates'
+	if o5 = ssz.ReadOffset(buf[116:120]); o5 > size || o3 > o5 {
+		return ssz.ErrOffset
+	}
+
+	// Field (1) 'ShardBlockLengths'
+	{
+		buf = tail[o1:o2]
+		num, err := ssz.DivideInt2(len(buf), 8, 12)
+		if err != nil {
+			return err
+		}
+		s.ShardBlockLengths = ssz.ExtendUint64(s.ShardBlockLengths, num)
+		for ii := 0; ii < num; ii++ {
+			s.ShardBlockLengths[ii] = ssz.UnmarshallUint64(buf[ii*8 : (ii+1)*8])
+		}
+	}
+
+	// Field (2) 'ShardDataRoots'
+	{
+		buf = tail[o2:o3]
+		num, err := ssz.DivideInt2(len(buf), 32, 12)
+		if err != nil {
+			return err
+		}
+		s.ShardDataRoots = make([][]byte, num)
+		for ii := 0; ii < num; ii++ {
+			if cap(s.ShardDataRoots[ii]) == 0 {
+				s.ShardDataRoots[ii] = make([]byte, 0, len(buf[ii*32:(ii+1)*32]))
+			}
+			s.ShardDataRoots[ii] = append(s.ShardDataRoots[ii], buf[ii*32:(ii+1)*32]...)
+		}
+	}
+
+	// Field (3) 'ShardStates'
+	{
+		buf = tail[o3:o5]
+		num, err := ssz.DivideInt2(len(buf), 48, 12)
+		if err != nil {
+			return err
+		}
+		s.ShardStates = make([]*ShardState, num)
+		for ii := 0; ii < num; ii++ {
+			if s.ShardStates[ii] == nil {
+				s.ShardStates[ii] = new(ShardState)
+			}
+			if err = s.ShardStates[ii].UnmarshalSSZ(buf[ii*48 : (ii+1)*48]); err != nil {
+				return err
+			}
+		}
+	}
+
+	// Field (5) 'PandoraStates'
+	{
+		buf = tail[o5:]
+		num, err := ssz.DivideInt2(len(buf), 168, 12)
+		if err != nil {
+			return err
+		}
+		s.PandoraStates = make([]*PandoraShardState, num)
+		for ii := 0; ii < num; ii++ {
+			if s.PandoraStates[ii] == nil {
+				s.PandoraStates[ii] = new(PandoraShardState)
+			}
+			if err = s.PandoraStates[ii].UnmarshalSSZ(buf[ii*168 : (ii+1)*168]); err != nil {
+				return err
+			}
+		}
+	}
+	return err
+}
+
+// SizeSSZ returns the ssz encoded size in bytes for the ShardTransition object
+func (s *ShardTransition) SizeSSZ() (size int) {
+	size = 120
+
+	// Field (1) 'ShardBlockLengths'
+	size += len(s.ShardBlockLengths) * 8
+
+	// Field (2) 'ShardDataRoots'
+	size += len(s.ShardDataRoots) * 32
+
+	// Field (3) 'ShardStates'
+	size += len(s.ShardStates) * 48
+
+	// Field (5) 'PandoraStates'
+	size += len(s.PandoraStates) * 168
+
+	return
+}
+
+// HashTreeRoot ssz hashes the ShardTransition object
+func (s *ShardTransition) HashTreeRoot() ([32]byte, error) {
+	return ssz.HashWithDefaultHasher(s)
+}
+
+// HashTreeRootWith ssz hashes the ShardTransition object with a hasher
+func (s *ShardTransition) HashTreeRootWith(hh *ssz.Hasher) (err error) {
+	indx := hh.Index()
+
+	// Field (0) 'StartSlot'
+	hh.PutUint64(s.StartSlot)
+
+	// Field (1) 'ShardBlockLengths'
+	{
+		if len(s.ShardBlockLengths) > 12 {
+			err = ssz.ErrListTooBig
+			return
+		}
+		subIndx := hh.Index()
+		for _, i := range s.ShardBlockLengths {
+			hh.AppendUint64(i)
+		}
+		hh.FillUpTo32()
+		numItems := uint64(len(s.ShardBlockLengths))
+		hh.MerkleizeWithMixin(subIndx, numItems, ssz.CalculateLimit(12, numItems, 8))
+	}
+
+	// Field (2) 'ShardDataRoots'
+	{
+		if len(s.ShardDataRoots) > 12 {
+			err = ssz.ErrListTooBig
+			return
+		}
+		subIndx := hh.Index()
+		for _, i := range s.ShardDataRoots {
+			if len(i) != 32 {
+				err = ssz.ErrBytesLength
+				return
+			}
+			hh.Append(i)
+		}
+		numItems := uint64(len(s.ShardDataRoots))
+		hh.MerkleizeWithMixin(subIndx, numItems, ssz.CalculateLimit(12, numItems, 32))
+	}
+
+	// Field (3) 'ShardStates'
+	{
+		subIndx := hh.Index()
+		num := uint64(len(s.ShardStates))
+		if num > 12 {
+			err = ssz.ErrIncorrectListSize
+			return
+		}
+		for i := uint64(0); i < num; i++ {
+			if err = s.ShardStates[i].HashTreeRootWith(hh); err != nil {
+				return
+			}
+		}
+		hh.MerkleizeWithMixin(subIndx, num, 12)
+	}
+
+	// Field (4) 'ProposerSignatureAggregate'
+	if len(s.ProposerSignatureAggregate) != 96 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(s.ProposerSignatureAggregate)
+
+	// Field (5) 'PandoraStates'
+	{
+		subIndx := hh.Index()
+		num := uint64(len(s.PandoraStates))
+		if num > 12 {
+			err = ssz.ErrIncorrectListSize
+			return
+		}
+		for i := uint64(0); i < num; i++ {
+			if err = s.PandoraStates[i].HashTreeRootWith(hh); err != nil {
+				return
+			}
+		}
+		hh.MerkleizeWithMixin(subIndx, num, 12)
+	}
+
+	hh.Merkleize(indx)
+	return
+}
+
 // MarshalSSZ ssz marshals the Validator object
 func (v *Validator) MarshalSSZ() ([]byte, error) {
 	return ssz.MarshalSSZ(v)
