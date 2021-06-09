@@ -775,6 +775,24 @@ func request_BeaconChain_StreamNewPendingBlocks_0(ctx context.Context, marshaler
 
 }
 
+func request_BeaconChain_GetCanonicalBlock_0(ctx context.Context, marshaler runtime.Marshaler, client BeaconChainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq empty.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.GetCanonicalBlock(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_BeaconChain_GetCanonicalBlock_0(ctx context.Context, marshaler runtime.Marshaler, server BeaconChainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq empty.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetCanonicalBlock(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterBeaconChainHandlerServer registers the http handlers for service BeaconChain to "mux".
 // UnaryRPC     :call BeaconChainServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1207,6 +1225,26 @@ func RegisterBeaconChainHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
+	})
+
+	mux.Handle("GET", pattern_BeaconChain_GetCanonicalBlock_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_BeaconChain_GetCanonicalBlock_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_BeaconChain_GetCanonicalBlock_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
 	})
 
 	return nil
@@ -1770,6 +1808,26 @@ func RegisterBeaconChainHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
+	mux.Handle("GET", pattern_BeaconChain_GetCanonicalBlock_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_BeaconChain_GetCanonicalBlock_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_BeaconChain_GetCanonicalBlock_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1822,9 +1880,11 @@ var (
 
 	pattern_BeaconChain_GetIndividualVotes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"eth", "v1alpha1", "beacon", "individual_votes"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_BeaconChain_StreamMinimalConsensusInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"eth", "v1alpha1", "beacon", "consensus", "info", "stream"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_BeaconChain_StreamMinimalConsensusInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"eth", "v1alpha1", "vanguard", "consensus", "info", "stream"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_BeaconChain_StreamNewPendingBlocks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"eth", "v1alpha1", "beacon", "blocks", "stream"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_BeaconChain_StreamNewPendingBlocks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"eth", "v1alpha1", "vanguard", "pending_blocks", "stream"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_BeaconChain_GetCanonicalBlock_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"eth", "v1alpha1", "vanguard", "canonical_block"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -1879,4 +1939,6 @@ var (
 	forward_BeaconChain_StreamMinimalConsensusInfo_0 = runtime.ForwardResponseStream
 
 	forward_BeaconChain_StreamNewPendingBlocks_0 = runtime.ForwardResponseStream
+
+	forward_BeaconChain_GetCanonicalBlock_0 = runtime.ForwardResponseMessage
 )
