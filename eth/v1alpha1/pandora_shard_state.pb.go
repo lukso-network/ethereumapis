@@ -5,11 +5,12 @@ package eth
 
 import (
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -25,14 +26,12 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type PandoraShardState struct {
 	Slot                 uint64   `protobuf:"varint,1,opt,name=slot,proto3" json:"slot,omitempty"`
-	GasPrice             uint64   `protobuf:"varint,2,opt,name=gas_price,json=gasPrice,proto3" json:"gas_price,omitempty"`
-	LatestBlockRoot      []byte   `protobuf:"bytes,3,opt,name=latest_block_root,json=latestBlockRoot,proto3" json:"latest_block_root,omitempty" ssz-size:"32"`
-	ParentBlockRoot      []byte   `protobuf:"bytes,4,opt,name=parent_block_root,json=parentBlockRoot,proto3" json:"parent_block_root,omitempty" ssz-size:"32"`
-	TxHash               []byte   `protobuf:"bytes,5,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash,omitempty" ssz-size:"32"`
-	ReceiptHash          []byte   `protobuf:"bytes,6,opt,name=receipt_hash,json=receiptHash,proto3" json:"receipt_hash,omitempty" ssz-size:"32"`
-	BlockNumber          uint64   `protobuf:"varint,7,opt,name=block_number,json=blockNumber,proto3" json:"block_number,omitempty"`
-	GasLimit             uint64   `protobuf:"varint,8,opt,name=gas_limit,json=gasLimit,proto3" json:"gas_limit,omitempty"`
-	GasUsed              uint64   `protobuf:"varint,9,opt,name=gas_used,json=gasUsed,proto3" json:"gas_used,omitempty"`
+	BlockNumber          uint64   `protobuf:"varint,2,opt,name=block_number,json=blockNumber,proto3" json:"block_number,omitempty"`
+	Hash                 []byte   `protobuf:"bytes,3,opt,name=hash,proto3" json:"hash,omitempty" ssz-size:"32"`
+	ParentHash           []byte   `protobuf:"bytes,4,opt,name=parent_hash,json=parentHash,proto3" json:"parent_hash,omitempty" ssz-size:"32"`
+	StateRoot            []byte   `protobuf:"bytes,5,opt,name=state_root,json=stateRoot,proto3" json:"state_root,omitempty" ssz-size:"32"`
+	TxHash               []byte   `protobuf:"bytes,6,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash,omitempty" ssz-size:"32"`
+	ReceiptHash          []byte   `protobuf:"bytes,7,opt,name=receipt_hash,json=receiptHash,proto3" json:"receipt_hash,omitempty" ssz-size:"32"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -78,23 +77,30 @@ func (m *PandoraShardState) GetSlot() uint64 {
 	return 0
 }
 
-func (m *PandoraShardState) GetGasPrice() uint64 {
+func (m *PandoraShardState) GetBlockNumber() uint64 {
 	if m != nil {
-		return m.GasPrice
+		return m.BlockNumber
 	}
 	return 0
 }
 
-func (m *PandoraShardState) GetLatestBlockRoot() []byte {
+func (m *PandoraShardState) GetHash() []byte {
 	if m != nil {
-		return m.LatestBlockRoot
+		return m.Hash
 	}
 	return nil
 }
 
-func (m *PandoraShardState) GetParentBlockRoot() []byte {
+func (m *PandoraShardState) GetParentHash() []byte {
 	if m != nil {
-		return m.ParentBlockRoot
+		return m.ParentHash
+	}
+	return nil
+}
+
+func (m *PandoraShardState) GetStateRoot() []byte {
+	if m != nil {
+		return m.StateRoot
 	}
 	return nil
 }
@@ -113,27 +119,6 @@ func (m *PandoraShardState) GetReceiptHash() []byte {
 	return nil
 }
 
-func (m *PandoraShardState) GetBlockNumber() uint64 {
-	if m != nil {
-		return m.BlockNumber
-	}
-	return 0
-}
-
-func (m *PandoraShardState) GetGasLimit() uint64 {
-	if m != nil {
-		return m.GasLimit
-	}
-	return 0
-}
-
-func (m *PandoraShardState) GetGasUsed() uint64 {
-	if m != nil {
-		return m.GasUsed
-	}
-	return 0
-}
-
 func init() {
 	proto.RegisterType((*PandoraShardState)(nil), "ethereum.eth.v1alpha1.PandoraShardState")
 }
@@ -143,32 +128,29 @@ func init() {
 }
 
 var fileDescriptor_b501c82eca9207c8 = []byte{
-	// 386 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xc1, 0xca, 0xd3, 0x40,
-	0x10, 0xc7, 0x49, 0xad, 0xed, 0xf7, 0xed, 0x57, 0x91, 0x06, 0x3e, 0x88, 0x0a, 0xf5, 0xb3, 0x07,
-	0x29, 0x42, 0x13, 0x6a, 0xc5, 0x83, 0xe2, 0xa5, 0x50, 0xf0, 0x20, 0x52, 0x5a, 0xbc, 0x88, 0x10,
-	0x26, 0xc9, 0x98, 0x5d, 0x4c, 0xba, 0xcb, 0xce, 0x44, 0x6a, 0x1f, 0xc9, 0x27, 0xf1, 0xe8, 0x13,
-	0x88, 0xf4, 0x11, 0x7c, 0x01, 0x25, 0x1b, 0x53, 0xeb, 0xa1, 0xb7, 0xf9, 0xcf, 0xfc, 0x7f, 0x99,
-	0xec, 0xcc, 0x88, 0xc7, 0xc8, 0x32, 0xfa, 0x3c, 0x83, 0xc2, 0x48, 0x98, 0x45, 0x06, 0xb6, 0x99,
-	0xb6, 0x10, 0x93, 0x04, 0x9b, 0xc5, 0xc4, 0xc0, 0x18, 0x1a, 0xab, 0x59, 0xfb, 0xd7, 0xc8, 0x12,
-	0x2d, 0x56, 0x65, 0x88, 0x2c, 0xc3, 0x16, 0xb8, 0x3f, 0xcd, 0x15, 0xcb, 0x2a, 0x09, 0x53, 0x5d,
-	0x46, 0xb9, 0xce, 0x75, 0xe4, 0xdc, 0x49, 0xf5, 0xd1, 0x29, 0x27, 0x5c, 0xd4, 0x7c, 0x65, 0xfc,
-	0xbb, 0x23, 0x86, 0xab, 0xa6, 0xc7, 0xa6, 0x6e, 0xb1, 0xa9, 0x3b, 0xf8, 0xbe, 0xe8, 0x52, 0xa1,
-	0x39, 0xf0, 0x6e, 0xbc, 0x49, 0x77, 0xed, 0x62, 0xff, 0x81, 0xb8, 0xcc, 0x81, 0x62, 0x63, 0x55,
-	0x8a, 0x41, 0xc7, 0x15, 0x2e, 0x72, 0xa0, 0x55, 0xad, 0xfd, 0x57, 0x62, 0x58, 0x00, 0x23, 0x71,
-	0x9c, 0x14, 0x3a, 0xfd, 0x14, 0x5b, 0xad, 0x39, 0xb8, 0x75, 0xe3, 0x4d, 0x06, 0x8b, 0xe1, 0xaf,
-	0x1f, 0x0f, 0xef, 0x10, 0xed, 0xa7, 0xa4, 0xf6, 0xf8, 0x62, 0x3c, 0x7f, 0x3a, 0x5e, 0xdf, 0x6d,
-	0xbc, 0x8b, 0xda, 0xba, 0xd6, 0x9a, 0x6b, 0xdc, 0x80, 0xc5, 0xed, 0x7f, 0x78, 0xf7, 0x2c, 0xde,
-	0x78, 0xff, 0xe1, 0x4f, 0x44, 0x9f, 0x77, 0xb1, 0x04, 0x92, 0xc1, 0xed, 0x73, 0x50, 0x8f, 0x77,
-	0xaf, 0x81, 0xa4, 0xff, 0x4c, 0x0c, 0x2c, 0xa6, 0xa8, 0x0c, 0x37, 0x40, 0xef, 0x1c, 0x70, 0xf5,
-	0xd7, 0xe6, 0xa8, 0x47, 0x62, 0xd0, 0xfc, 0xd9, 0xb6, 0x2a, 0x13, 0xb4, 0x41, 0xdf, 0xbd, 0xff,
-	0xca, 0xe5, 0xde, 0xba, 0x54, 0x3b, 0x9f, 0x42, 0x95, 0x8a, 0x83, 0x8b, 0xe3, 0x7c, 0xde, 0xd4,
-	0xda, 0xbf, 0x27, 0xea, 0x38, 0xae, 0x08, 0xb3, 0xe0, 0xd2, 0xd5, 0xfa, 0x39, 0xd0, 0x3b, 0xc2,
-	0x6c, 0xf1, 0xe1, 0xdb, 0x61, 0xe4, 0x7d, 0x3f, 0x8c, 0xbc, 0x9f, 0x87, 0x91, 0xf7, 0xfe, 0xf9,
-	0xc9, 0xfa, 0x8c, 0xfd, 0x42, 0x25, 0xb0, 0x4a, 0x0b, 0x48, 0x28, 0x6a, 0xd7, 0x0d, 0x46, 0x39,
-	0x71, 0xbc, 0x91, 0x97, 0xc8, 0xf2, 0x6b, 0xe7, 0x7a, 0xd9, 0x9e, 0xc3, 0xf2, 0xe4, 0x1c, 0x92,
-	0x9e, 0x5b, 0xf3, 0xfc, 0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x93, 0x92, 0x00, 0x53, 0x56, 0x02,
-	0x00, 0x00,
+	// 339 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0xcf, 0x4a, 0xf3, 0x40,
+	0x14, 0xc5, 0x49, 0xbf, 0x7c, 0x2d, 0x4e, 0xeb, 0xa2, 0x03, 0x85, 0xe0, 0xa2, 0xd6, 0x82, 0x52,
+	0x84, 0x26, 0xb6, 0x15, 0x17, 0xba, 0x2b, 0x14, 0x5c, 0x89, 0xb4, 0x3b, 0x11, 0xc2, 0x4c, 0x3a,
+	0x76, 0x82, 0x49, 0x67, 0x98, 0xb9, 0x91, 0xda, 0x47, 0xf2, 0x0d, 0x7c, 0x03, 0x97, 0x3e, 0x81,
+	0x48, 0x1f, 0xc1, 0x27, 0x90, 0xdc, 0xb4, 0xd2, 0x4d, 0x76, 0xf7, 0xcf, 0xef, 0xdc, 0x93, 0xcc,
+	0x21, 0x67, 0x02, 0x64, 0xf0, 0x32, 0x60, 0x89, 0x96, 0x6c, 0x10, 0x68, 0xb6, 0x9c, 0x2b, 0xc3,
+	0x42, 0x2b, 0x99, 0x99, 0x87, 0x16, 0x18, 0x08, 0x5f, 0x1b, 0x05, 0x8a, 0xb6, 0x04, 0x48, 0x61,
+	0x44, 0x96, 0xfa, 0x02, 0xa4, 0xbf, 0x13, 0x1c, 0xf5, 0x17, 0x31, 0xc8, 0x8c, 0xfb, 0x91, 0x4a,
+	0x83, 0x85, 0x5a, 0xa8, 0x00, 0x69, 0x9e, 0x3d, 0x61, 0x87, 0x0d, 0x56, 0xc5, 0x95, 0xee, 0x7b,
+	0x85, 0x34, 0xef, 0x0b, 0x8f, 0x59, 0x6e, 0x31, 0xcb, 0x1d, 0x28, 0x25, 0xae, 0x4d, 0x14, 0x78,
+	0x4e, 0xc7, 0xe9, 0xb9, 0x53, 0xac, 0xe9, 0x09, 0x69, 0xf0, 0x44, 0x45, 0xcf, 0xe1, 0x32, 0x4b,
+	0xb9, 0x30, 0x5e, 0x05, 0x77, 0x75, 0x9c, 0xdd, 0xe1, 0x88, 0x9e, 0x12, 0x57, 0x32, 0x2b, 0xbd,
+	0x7f, 0x1d, 0xa7, 0xd7, 0x18, 0x37, 0x7f, 0xbe, 0x8e, 0x0f, 0xad, 0x5d, 0xf7, 0x6d, 0xbc, 0x16,
+	0xd7, 0xdd, 0xd1, 0xb0, 0x3b, 0xc5, 0x35, 0x1d, 0x92, 0xba, 0x66, 0x46, 0x2c, 0x21, 0x44, 0xda,
+	0x2d, 0xa3, 0x49, 0x41, 0xdd, 0xe6, 0x9a, 0x0b, 0x42, 0xf0, 0xe7, 0x43, 0xa3, 0x14, 0x78, 0xff,
+	0xcb, 0x24, 0x07, 0x08, 0x4d, 0x95, 0x02, 0x7a, 0x4e, 0x6a, 0xb0, 0x2a, 0x1c, 0xaa, 0x65, 0x78,
+	0x15, 0x56, 0x78, 0xfd, 0x92, 0x34, 0x8c, 0x88, 0x44, 0xac, 0xb7, 0x9f, 0x54, 0x2b, 0x13, 0xd4,
+	0xb7, 0x58, 0xae, 0x1a, 0x3f, 0x7e, 0x6c, 0xda, 0xce, 0xe7, 0xa6, 0xed, 0x7c, 0x6f, 0xda, 0xce,
+	0xc3, 0xd5, 0xde, 0xc3, 0x6b, 0xf3, 0x6a, 0x53, 0x06, 0x71, 0x94, 0x30, 0x6e, 0x83, 0x5d, 0x50,
+	0x4c, 0xc7, 0xd8, 0xfc, 0xa5, 0x7b, 0x23, 0x40, 0xbe, 0x55, 0x5a, 0x93, 0x5d, 0x90, 0x93, 0xbd,
+	0x20, 0x79, 0x15, 0x03, 0x1a, 0xfd, 0x06, 0x00, 0x00, 0xff, 0xff, 0x36, 0xf2, 0xf1, 0xd4, 0x10,
+	0x02, 0x00, 0x00,
 }
 
 func (m *PandoraShardState) Marshal() (dAtA []byte, err error) {
@@ -195,51 +177,43 @@ func (m *PandoraShardState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.GasUsed != 0 {
-		i = encodeVarintPandoraShardState(dAtA, i, uint64(m.GasUsed))
-		i--
-		dAtA[i] = 0x48
-	}
-	if m.GasLimit != 0 {
-		i = encodeVarintPandoraShardState(dAtA, i, uint64(m.GasLimit))
-		i--
-		dAtA[i] = 0x40
-	}
-	if m.BlockNumber != 0 {
-		i = encodeVarintPandoraShardState(dAtA, i, uint64(m.BlockNumber))
-		i--
-		dAtA[i] = 0x38
-	}
 	if len(m.ReceiptHash) > 0 {
 		i -= len(m.ReceiptHash)
 		copy(dAtA[i:], m.ReceiptHash)
 		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.ReceiptHash)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0x3a
 	}
 	if len(m.TxHash) > 0 {
 		i -= len(m.TxHash)
 		copy(dAtA[i:], m.TxHash)
 		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.TxHash)))
 		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.StateRoot) > 0 {
+		i -= len(m.StateRoot)
+		copy(dAtA[i:], m.StateRoot)
+		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.StateRoot)))
+		i--
 		dAtA[i] = 0x2a
 	}
-	if len(m.ParentBlockRoot) > 0 {
-		i -= len(m.ParentBlockRoot)
-		copy(dAtA[i:], m.ParentBlockRoot)
-		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.ParentBlockRoot)))
+	if len(m.ParentHash) > 0 {
+		i -= len(m.ParentHash)
+		copy(dAtA[i:], m.ParentHash)
+		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.ParentHash)))
 		i--
 		dAtA[i] = 0x22
 	}
-	if len(m.LatestBlockRoot) > 0 {
-		i -= len(m.LatestBlockRoot)
-		copy(dAtA[i:], m.LatestBlockRoot)
-		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.LatestBlockRoot)))
+	if len(m.Hash) > 0 {
+		i -= len(m.Hash)
+		copy(dAtA[i:], m.Hash)
+		i = encodeVarintPandoraShardState(dAtA, i, uint64(len(m.Hash)))
 		i--
 		dAtA[i] = 0x1a
 	}
-	if m.GasPrice != 0 {
-		i = encodeVarintPandoraShardState(dAtA, i, uint64(m.GasPrice))
+	if m.BlockNumber != 0 {
+		i = encodeVarintPandoraShardState(dAtA, i, uint64(m.BlockNumber))
 		i--
 		dAtA[i] = 0x10
 	}
@@ -271,14 +245,18 @@ func (m *PandoraShardState) Size() (n int) {
 	if m.Slot != 0 {
 		n += 1 + sovPandoraShardState(uint64(m.Slot))
 	}
-	if m.GasPrice != 0 {
-		n += 1 + sovPandoraShardState(uint64(m.GasPrice))
+	if m.BlockNumber != 0 {
+		n += 1 + sovPandoraShardState(uint64(m.BlockNumber))
 	}
-	l = len(m.LatestBlockRoot)
+	l = len(m.Hash)
 	if l > 0 {
 		n += 1 + l + sovPandoraShardState(uint64(l))
 	}
-	l = len(m.ParentBlockRoot)
+	l = len(m.ParentHash)
+	if l > 0 {
+		n += 1 + l + sovPandoraShardState(uint64(l))
+	}
+	l = len(m.StateRoot)
 	if l > 0 {
 		n += 1 + l + sovPandoraShardState(uint64(l))
 	}
@@ -289,15 +267,6 @@ func (m *PandoraShardState) Size() (n int) {
 	l = len(m.ReceiptHash)
 	if l > 0 {
 		n += 1 + l + sovPandoraShardState(uint64(l))
-	}
-	if m.BlockNumber != 0 {
-		n += 1 + sovPandoraShardState(uint64(m.BlockNumber))
-	}
-	if m.GasLimit != 0 {
-		n += 1 + sovPandoraShardState(uint64(m.GasLimit))
-	}
-	if m.GasUsed != 0 {
-		n += 1 + sovPandoraShardState(uint64(m.GasUsed))
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -361,9 +330,9 @@ func (m *PandoraShardState) Unmarshal(dAtA []byte) error {
 			}
 		case 2:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field GasPrice", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field BlockNumber", wireType)
 			}
-			m.GasPrice = 0
+			m.BlockNumber = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowPandoraShardState
@@ -373,14 +342,14 @@ func (m *PandoraShardState) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.GasPrice |= uint64(b&0x7F) << shift
+				m.BlockNumber |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LatestBlockRoot", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Hash", wireType)
 			}
 			var byteLen int
 			for shift := uint(0); ; shift += 7 {
@@ -407,14 +376,14 @@ func (m *PandoraShardState) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.LatestBlockRoot = append(m.LatestBlockRoot[:0], dAtA[iNdEx:postIndex]...)
-			if m.LatestBlockRoot == nil {
-				m.LatestBlockRoot = []byte{}
+			m.Hash = append(m.Hash[:0], dAtA[iNdEx:postIndex]...)
+			if m.Hash == nil {
+				m.Hash = []byte{}
 			}
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ParentBlockRoot", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ParentHash", wireType)
 			}
 			var byteLen int
 			for shift := uint(0); ; shift += 7 {
@@ -441,12 +410,46 @@ func (m *PandoraShardState) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ParentBlockRoot = append(m.ParentBlockRoot[:0], dAtA[iNdEx:postIndex]...)
-			if m.ParentBlockRoot == nil {
-				m.ParentBlockRoot = []byte{}
+			m.ParentHash = append(m.ParentHash[:0], dAtA[iNdEx:postIndex]...)
+			if m.ParentHash == nil {
+				m.ParentHash = []byte{}
 			}
 			iNdEx = postIndex
 		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StateRoot", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPandoraShardState
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthPandoraShardState
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPandoraShardState
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.StateRoot = append(m.StateRoot[:0], dAtA[iNdEx:postIndex]...)
+			if m.StateRoot == nil {
+				m.StateRoot = []byte{}
+			}
+			iNdEx = postIndex
+		case 6:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field TxHash", wireType)
 			}
@@ -480,7 +483,7 @@ func (m *PandoraShardState) Unmarshal(dAtA []byte) error {
 				m.TxHash = []byte{}
 			}
 			iNdEx = postIndex
-		case 6:
+		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ReceiptHash", wireType)
 			}
@@ -514,63 +517,6 @@ func (m *PandoraShardState) Unmarshal(dAtA []byte) error {
 				m.ReceiptHash = []byte{}
 			}
 			iNdEx = postIndex
-		case 7:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlockNumber", wireType)
-			}
-			m.BlockNumber = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPandoraShardState
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.BlockNumber |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 8:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field GasLimit", wireType)
-			}
-			m.GasLimit = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPandoraShardState
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.GasLimit |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 9:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field GasUsed", wireType)
-			}
-			m.GasUsed = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPandoraShardState
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.GasUsed |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPandoraShardState(dAtA[iNdEx:])

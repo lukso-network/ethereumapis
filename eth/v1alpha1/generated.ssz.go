@@ -2297,45 +2297,43 @@ func (p *PandoraShardState) MarshalSSZTo(buf []byte) (dst []byte, err error) {
 	// Field (0) 'Slot'
 	dst = ssz.MarshalUint64(dst, p.Slot)
 
-	// Field (1) 'GasPrice'
-	dst = ssz.MarshalUint64(dst, p.GasPrice)
+	// Field (1) 'BlockNumber'
+	dst = ssz.MarshalUint64(dst, p.BlockNumber)
 
-	// Field (2) 'LatestBlockRoot'
-	if len(p.LatestBlockRoot) != 32 {
+	// Field (2) 'Hash'
+	if len(p.Hash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
-	dst = append(dst, p.LatestBlockRoot...)
+	dst = append(dst, p.Hash...)
 
-	// Field (3) 'ParentBlockRoot'
-	if len(p.ParentBlockRoot) != 32 {
+	// Field (3) 'ParentHash'
+	if len(p.ParentHash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
-	dst = append(dst, p.ParentBlockRoot...)
+	dst = append(dst, p.ParentHash...)
 
-	// Field (4) 'TxHash'
+	// Field (4) 'StateRoot'
+	if len(p.StateRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	dst = append(dst, p.StateRoot...)
+
+	// Field (5) 'TxHash'
 	if len(p.TxHash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
 	dst = append(dst, p.TxHash...)
 
-	// Field (5) 'ReceiptHash'
+	// Field (6) 'ReceiptHash'
 	if len(p.ReceiptHash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
 	dst = append(dst, p.ReceiptHash...)
-
-	// Field (6) 'BlockNumber'
-	dst = ssz.MarshalUint64(dst, p.BlockNumber)
-
-	// Field (7) 'GasLimit'
-	dst = ssz.MarshalUint64(dst, p.GasLimit)
-
-	// Field (8) 'GasUsed'
-	dst = ssz.MarshalUint64(dst, p.GasUsed)
 
 	return
 }
@@ -2344,55 +2342,52 @@ func (p *PandoraShardState) MarshalSSZTo(buf []byte) (dst []byte, err error) {
 func (p *PandoraShardState) UnmarshalSSZ(buf []byte) error {
 	var err error
 	size := uint64(len(buf))
-	if size != 168 {
+	if size != 176 {
 		return ssz.ErrSize
 	}
 
 	// Field (0) 'Slot'
 	p.Slot = ssz.UnmarshallUint64(buf[0:8])
 
-	// Field (1) 'GasPrice'
-	p.GasPrice = ssz.UnmarshallUint64(buf[8:16])
+	// Field (1) 'BlockNumber'
+	p.BlockNumber = ssz.UnmarshallUint64(buf[8:16])
 
-	// Field (2) 'LatestBlockRoot'
-	if cap(p.LatestBlockRoot) == 0 {
-		p.LatestBlockRoot = make([]byte, 0, len(buf[16:48]))
+	// Field (2) 'Hash'
+	if cap(p.Hash) == 0 {
+		p.Hash = make([]byte, 0, len(buf[16:48]))
 	}
-	p.LatestBlockRoot = append(p.LatestBlockRoot, buf[16:48]...)
+	p.Hash = append(p.Hash, buf[16:48]...)
 
-	// Field (3) 'ParentBlockRoot'
-	if cap(p.ParentBlockRoot) == 0 {
-		p.ParentBlockRoot = make([]byte, 0, len(buf[48:80]))
+	// Field (3) 'ParentHash'
+	if cap(p.ParentHash) == 0 {
+		p.ParentHash = make([]byte, 0, len(buf[48:80]))
 	}
-	p.ParentBlockRoot = append(p.ParentBlockRoot, buf[48:80]...)
+	p.ParentHash = append(p.ParentHash, buf[48:80]...)
 
-	// Field (4) 'TxHash'
+	// Field (4) 'StateRoot'
+	if cap(p.StateRoot) == 0 {
+		p.StateRoot = make([]byte, 0, len(buf[80:112]))
+	}
+	p.StateRoot = append(p.StateRoot, buf[80:112]...)
+
+	// Field (5) 'TxHash'
 	if cap(p.TxHash) == 0 {
-		p.TxHash = make([]byte, 0, len(buf[80:112]))
+		p.TxHash = make([]byte, 0, len(buf[112:144]))
 	}
-	p.TxHash = append(p.TxHash, buf[80:112]...)
+	p.TxHash = append(p.TxHash, buf[112:144]...)
 
-	// Field (5) 'ReceiptHash'
+	// Field (6) 'ReceiptHash'
 	if cap(p.ReceiptHash) == 0 {
-		p.ReceiptHash = make([]byte, 0, len(buf[112:144]))
+		p.ReceiptHash = make([]byte, 0, len(buf[144:176]))
 	}
-	p.ReceiptHash = append(p.ReceiptHash, buf[112:144]...)
-
-	// Field (6) 'BlockNumber'
-	p.BlockNumber = ssz.UnmarshallUint64(buf[144:152])
-
-	// Field (7) 'GasLimit'
-	p.GasLimit = ssz.UnmarshallUint64(buf[152:160])
-
-	// Field (8) 'GasUsed'
-	p.GasUsed = ssz.UnmarshallUint64(buf[160:168])
+	p.ReceiptHash = append(p.ReceiptHash, buf[144:176]...)
 
 	return err
 }
 
 // SizeSSZ returns the ssz encoded size in bytes for the PandoraShardState object
 func (p *PandoraShardState) SizeSSZ() (size int) {
-	size = 168
+	size = 176
 	return
 }
 
@@ -2408,45 +2403,43 @@ func (p *PandoraShardState) HashTreeRootWith(hh *ssz.Hasher) (err error) {
 	// Field (0) 'Slot'
 	hh.PutUint64(p.Slot)
 
-	// Field (1) 'GasPrice'
-	hh.PutUint64(p.GasPrice)
+	// Field (1) 'BlockNumber'
+	hh.PutUint64(p.BlockNumber)
 
-	// Field (2) 'LatestBlockRoot'
-	if len(p.LatestBlockRoot) != 32 {
+	// Field (2) 'Hash'
+	if len(p.Hash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
-	hh.PutBytes(p.LatestBlockRoot)
+	hh.PutBytes(p.Hash)
 
-	// Field (3) 'ParentBlockRoot'
-	if len(p.ParentBlockRoot) != 32 {
+	// Field (3) 'ParentHash'
+	if len(p.ParentHash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
-	hh.PutBytes(p.ParentBlockRoot)
+	hh.PutBytes(p.ParentHash)
 
-	// Field (4) 'TxHash'
+	// Field (4) 'StateRoot'
+	if len(p.StateRoot) != 32 {
+		err = ssz.ErrBytesLength
+		return
+	}
+	hh.PutBytes(p.StateRoot)
+
+	// Field (5) 'TxHash'
 	if len(p.TxHash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
 	hh.PutBytes(p.TxHash)
 
-	// Field (5) 'ReceiptHash'
+	// Field (6) 'ReceiptHash'
 	if len(p.ReceiptHash) != 32 {
 		err = ssz.ErrBytesLength
 		return
 	}
 	hh.PutBytes(p.ReceiptHash)
-
-	// Field (6) 'BlockNumber'
-	hh.PutUint64(p.BlockNumber)
-
-	// Field (7) 'GasLimit'
-	hh.PutUint64(p.GasLimit)
-
-	// Field (8) 'GasUsed'
-	hh.PutUint64(p.GasUsed)
 
 	hh.Merkleize(indx)
 	return
@@ -2540,7 +2533,7 @@ func (s *ShardTransition) MarshalSSZ() ([]byte, error) {
 // MarshalSSZTo ssz marshals the ShardTransition object to a target array
 func (s *ShardTransition) MarshalSSZTo(buf []byte) (dst []byte, err error) {
 	dst = buf
-	offset := int(120)
+	offset := int(292)
 
 	// Field (0) 'StartSlot'
 	dst = ssz.MarshalUint64(dst, s.StartSlot)
@@ -2564,9 +2557,13 @@ func (s *ShardTransition) MarshalSSZTo(buf []byte) (dst []byte, err error) {
 	}
 	dst = append(dst, s.ProposerSignatureAggregate...)
 
-	// Offset (5) 'PandoraStates'
-	dst = ssz.WriteOffset(dst, offset)
-	offset += len(s.PandoraStates) * 168
+	// Field (5) 'PandoraShardState'
+	if s.PandoraShardState == nil {
+		s.PandoraShardState = new(PandoraShardState)
+	}
+	if dst, err = s.PandoraShardState.MarshalSSZTo(dst); err != nil {
+		return
+	}
 
 	// Field (1) 'ShardBlockLengths'
 	if len(s.ShardBlockLengths) > 12 {
@@ -2601,17 +2598,6 @@ func (s *ShardTransition) MarshalSSZTo(buf []byte) (dst []byte, err error) {
 		}
 	}
 
-	// Field (5) 'PandoraStates'
-	if len(s.PandoraStates) > 12 {
-		err = ssz.ErrListTooBig
-		return
-	}
-	for ii := 0; ii < len(s.PandoraStates); ii++ {
-		if dst, err = s.PandoraStates[ii].MarshalSSZTo(dst); err != nil {
-			return
-		}
-	}
-
 	return
 }
 
@@ -2619,12 +2605,12 @@ func (s *ShardTransition) MarshalSSZTo(buf []byte) (dst []byte, err error) {
 func (s *ShardTransition) UnmarshalSSZ(buf []byte) error {
 	var err error
 	size := uint64(len(buf))
-	if size < 120 {
+	if size < 292 {
 		return ssz.ErrSize
 	}
 
 	tail := buf
-	var o1, o2, o3, o5 uint64
+	var o1, o2, o3 uint64
 
 	// Field (0) 'StartSlot'
 	s.StartSlot = ssz.UnmarshallUint64(buf[0:8])
@@ -2650,9 +2636,12 @@ func (s *ShardTransition) UnmarshalSSZ(buf []byte) error {
 	}
 	s.ProposerSignatureAggregate = append(s.ProposerSignatureAggregate, buf[20:116]...)
 
-	// Offset (5) 'PandoraStates'
-	if o5 = ssz.ReadOffset(buf[116:120]); o5 > size || o3 > o5 {
-		return ssz.ErrOffset
+	// Field (5) 'PandoraShardState'
+	if s.PandoraShardState == nil {
+		s.PandoraShardState = new(PandoraShardState)
+	}
+	if err = s.PandoraShardState.UnmarshalSSZ(buf[116:292]); err != nil {
+		return err
 	}
 
 	// Field (1) 'ShardBlockLengths'
@@ -2686,7 +2675,7 @@ func (s *ShardTransition) UnmarshalSSZ(buf []byte) error {
 
 	// Field (3) 'ShardStates'
 	{
-		buf = tail[o3:o5]
+		buf = tail[o3:]
 		num, err := ssz.DivideInt2(len(buf), 48, 12)
 		if err != nil {
 			return err
@@ -2701,30 +2690,12 @@ func (s *ShardTransition) UnmarshalSSZ(buf []byte) error {
 			}
 		}
 	}
-
-	// Field (5) 'PandoraStates'
-	{
-		buf = tail[o5:]
-		num, err := ssz.DivideInt2(len(buf), 168, 12)
-		if err != nil {
-			return err
-		}
-		s.PandoraStates = make([]*PandoraShardState, num)
-		for ii := 0; ii < num; ii++ {
-			if s.PandoraStates[ii] == nil {
-				s.PandoraStates[ii] = new(PandoraShardState)
-			}
-			if err = s.PandoraStates[ii].UnmarshalSSZ(buf[ii*168 : (ii+1)*168]); err != nil {
-				return err
-			}
-		}
-	}
 	return err
 }
 
 // SizeSSZ returns the ssz encoded size in bytes for the ShardTransition object
 func (s *ShardTransition) SizeSSZ() (size int) {
-	size = 120
+	size = 292
 
 	// Field (1) 'ShardBlockLengths'
 	size += len(s.ShardBlockLengths) * 8
@@ -2734,9 +2705,6 @@ func (s *ShardTransition) SizeSSZ() (size int) {
 
 	// Field (3) 'ShardStates'
 	size += len(s.ShardStates) * 48
-
-	// Field (5) 'PandoraStates'
-	size += len(s.PandoraStates) * 168
 
 	return
 }
@@ -2809,20 +2777,9 @@ func (s *ShardTransition) HashTreeRootWith(hh *ssz.Hasher) (err error) {
 	}
 	hh.PutBytes(s.ProposerSignatureAggregate)
 
-	// Field (5) 'PandoraStates'
-	{
-		subIndx := hh.Index()
-		num := uint64(len(s.PandoraStates))
-		if num > 12 {
-			err = ssz.ErrIncorrectListSize
-			return
-		}
-		for i := uint64(0); i < num; i++ {
-			if err = s.PandoraStates[i].HashTreeRootWith(hh); err != nil {
-				return
-			}
-		}
-		hh.MerkleizeWithMixin(subIndx, num, 12)
+	// Field (5) 'PandoraShardState'
+	if err = s.PandoraShardState.HashTreeRootWith(hh); err != nil {
+		return
 	}
 
 	hh.Merkleize(indx)

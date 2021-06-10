@@ -34,5 +34,5 @@ message ShardTransition {
   repeated ShardState shard_states = 4 [(gogoproto.moretags) = "ssz-max:\"12\""];
   bytes proposer_signature_aggregate = 5 [(gogoproto.moretags) = "ssz-size:\"96\""];
   // pandora shard state contains pandora state
-  repeated PandoraShardState pandora_states = 6 [(gogoproto.moretags) = "ssz-max:\"12\""];
+  PandoraShardState pandora_shard_state = 6;
 }
