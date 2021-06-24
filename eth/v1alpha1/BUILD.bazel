@@ -25,8 +25,7 @@ proto_library(
         "beacon_block.proto",
         "beacon_chain.proto",
         "node.proto",
-        "shard.proto",
-        "pandora_shard_state.proto",
+        "pandora_shard.proto",
         "validator.proto",
         ":generated_swagger_proto",
     ],
@@ -77,9 +76,7 @@ ssz_gen_marshal(
         "SignedVoluntaryExit",
         "Validator",
         "VoluntaryExit",
-        "ShardTransition",
-        "ShardState",
-        "PandoraShardState",
+        "PandoraShard",
     ],
 )
 

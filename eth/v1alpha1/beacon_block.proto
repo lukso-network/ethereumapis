@@ -17,7 +17,7 @@ package ethereum.eth.v1alpha1;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 import "eth/v1alpha1/attestation.proto";
-import "eth/v1alpha1/shard.proto";
+import "eth/v1alpha1/pandora_shard.proto";
 
 option csharp_namespace = "Ethereum.Eth.v1alpha1";
 option go_package = "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1;eth";
@@ -83,7 +83,8 @@ message BeaconBlockBody {
     // At most MAX_VOLUNTARY_EXITS.
     repeated SignedVoluntaryExit voluntary_exits = 8 [(gogoproto.moretags) = "ssz-max:\"16\""];
 
-    repeated ShardTransition shard_transitions = 9 [(gogoproto.moretags) = "ssz-max:\"64\""];
+    // Pandora sharding info
+    PandoraShard pandora_shard = 9;
 }
 
 // Proposer slashings are proofs that a slashable offense has been committed by
