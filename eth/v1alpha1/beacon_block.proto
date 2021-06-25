@@ -84,7 +84,7 @@ message BeaconBlockBody {
     repeated SignedVoluntaryExit voluntary_exits = 8 [(gogoproto.moretags) = "ssz-max:\"16\""];
 
     // Pandora sharding info
-    PandoraShard pandora_shard = 9;
+    repeated PandoraShard pandora_shard = 9 [(gogoproto.moretags) = "ssz-max:\"64\""];
 }
 
 // Proposer slashings are proofs that a slashable offense has been committed by
