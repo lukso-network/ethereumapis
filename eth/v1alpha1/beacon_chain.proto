@@ -285,20 +285,6 @@ service BeaconChain {
             get: "/eth/v1alpha1/vanguard/pending_blocks/stream"
         };
     }
-
-    // GetCanonicalBlock returns head block of canonical chain
-    rpc GetCanonicalBlock(google.protobuf.Empty) returns (SignedBeaconBlock) {
-        option (google.api.http) = {
-            get: "/eth/v1alpha1/vanguard/canonical_block"
-        };
-    }
-
-    // UpdateStateRoot re-computes state root and update state root
-    rpc UpdateStateRoot(BeaconBlock) returns (BeaconBlock) {
-        option (google.api.http) = {
-            get: "/eth/v1alpha1/vanguard/update_state_root"
-        };
-    }
 }
 
 // SetAction defines the type of action that should be applied to the keys in a validator change set.
