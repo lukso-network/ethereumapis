@@ -20,6 +20,8 @@ message PandoraShard {
   bytes tx_hash = 5 [(gogoproto.moretags) = "ssz-size:\"32\""];
   // Receipt hash of the pandora sharding block
   bytes receipt_hash = 6 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Seal hash of the pandora sharding block header
+  bytes seal_hash = 7 [(gogoproto.moretags) = "ssz-size:\"32\""];
   // 96 byte bls signature of pandora header
-  bytes signature = 7 [(gogoproto.moretags) = "ssz-size:\"96\""];
+  bytes signature = 8 [(gogoproto.moretags) = "ssz-size:\"96\""];
 }
