@@ -15,6 +15,6 @@ require (
 )
 
 replace (
-	github.com/ferranbt/fastssz => github.com/atif-konasl/fastssz v0.0.0-20210705113036-087ec0cbb160
-	github.com/prysmaticlabs/ethereumapis => github.com/lukso-network/vanguard-apis v0.0.1-alpha
+	github.com/ferranbt/fastssz => github.com/atif-konasl/fastssz v0.0.0-20210825113045-242c536f4f90
+	github.com/prysmaticlabs/ethereumapis => ./
 )
