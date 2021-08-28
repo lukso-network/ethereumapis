@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package ethereum.eth.v1alpha1;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option csharp_namespace = "Ethereum.Eth.v1alpha1";
+option go_package = "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1;eth";
+
+message PandoraShard {
+  // Current block number of the sharding chain
+  uint64 block_number = 1;
+  // Current hash of the pandora sharding block
+  bytes hash = 2 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Parent hash of the pandora sharding block
+  bytes parent_hash = 3 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // State root of the pandora sharding block header
+  bytes state_root = 4 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Transaction hash of the pandora sharding block
+  bytes tx_hash = 5 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Receipt hash of the pandora sharding block
+  bytes receipt_hash = 6 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // Seal hash of the pandora sharding block header
+  bytes seal_hash = 7 [(gogoproto.moretags) = "ssz-size:\"32\""];
+  // 96 byte bls signature of pandora header
+  bytes signature = 8 [(gogoproto.moretags) = "ssz-size:\"96\""];
+}
