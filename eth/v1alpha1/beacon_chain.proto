@@ -285,6 +285,12 @@ service BeaconChain {
             get: "/eth/v1alpha1/vanguard/pending_blocks/stream"
         };
     }
+
+    rpc IsValidBlock(BlockStatusValidationRequest) returns (BlockStatusValidationResponse) {
+        option (google.api.http) = {
+            get: "/eth/v1alpha1/beacon/is_valid_block"
+        };
+    }
 }
 
 // SetAction defines the type of action that should be applied to the keys in a validator change set.
@@ -916,4 +922,13 @@ message StreamPendingBlocksRequest {
     bytes block_root = 1;
 
     uint64 from_slot = 2 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Slot"];
+}
+
+message BlockStatusValidationRequest {
+    uint64 slot = 1 [(gogoproto.casttype) = "github.com/prysmaticlabs/eth2-types.Slot"];
+    bytes hash = 2 [(gogoproto.moretags) = "ssz-size:\"32\""];
+}
+
+message BlockStatusValidationResponse {
+    bool isValid = 1;
 }
